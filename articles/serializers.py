@@ -13,4 +13,4 @@ class ArticlePostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields=("title","content")
+        fields=("title","content",)

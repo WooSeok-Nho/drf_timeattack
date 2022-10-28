@@ -14,7 +14,7 @@ class ArticleView(APIView):
     def post(self, request):
         serializer = ArticlePostSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(author=request.user)
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
