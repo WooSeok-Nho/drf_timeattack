@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from articles.models import Article
-from articles.serializers import ArticleSerializer
+from articles.serializers import ArticleSerializer,ArticlePostSerializer
 
 # Create your views here.
 class ArticleView(APIView):
@@ -12,9 +12,9 @@ class ArticleView(APIView):
 
 
     def post(self, request):
-        serializer = ArticleSerializer(data=request.data)
+        serializer = ArticlePostSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user=request.user)
+            serializer.save()
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
